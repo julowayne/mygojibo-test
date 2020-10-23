@@ -1,23 +1,8 @@
 <template>
   <div id="results">
-    <table>
-      <thead>
-        <tr>
-          <th colspan="2">Stress Level</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Date</td>
-          <td>Value</td>
-        </tr>
-        <stressLevelValue
-          v-for="(stressLevelValue, index) in stressLevel"
-          :key="index"
-          :stressLevelValue="stressLevelValue"
-        />
-      </tbody>
-    </table>
+    <div class="chart-container">
+      <canvas id="stress" width="400" height="400"></canvas>
+    </div>
     <table>
       <thead>
         <tr>
@@ -41,18 +26,59 @@
 </template>
 
 <script>
-import stressLevelValue from "@/components/stressLevelValue.vue";
+import Chart from "chart.js";
+
 import testResultsValue from "@/components/testResultsValue.vue";
 
 export default {
   name: "GlobalResults",
   components: {
-    stressLevelValue,
     testResultsValue
   },
   props: {
-    stressLevel: Array,
+    dates: Array,
+    values: Array,
     testResults: Array
+  },
+  methods: {
+    stressLine() {
+      var stressData = document.getElementById("stress").getContext("2d");
+      // eslint-disable-next-line no-unused-vars
+      var stress = new Chart(stressData, {
+        type: "line",
+        data: {
+          labels: this.dates,
+          datasets: [
+            {
+              label: "Stress value",
+              data: this.values,
+              backgroundColor: ["rgb(239,50,129, .7)"],
+              borderColor: ["rgba(255, 255, 255)"],
+              pointBackgroundColor: "rgba(235, 149, 50, 1)"
+            }
+          ]
+        },
+        options: {
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true,
+                  min: 0,
+                  max: 100,
+                  callback: function(value) {
+                    return value + "%";
+                  }
+                }
+              }
+            ]
+          }
+        }
+      });
+    }
+  },
+  mounted() {
+    this.stressLine();
   }
 };
 </script>
@@ -78,21 +104,24 @@ export default {
     tr {
       th {
         border: 1px solid lightgrey;
-        border-bottom: 1.5px solid grey;
         padding: 1.5em;
         text-align: center;
-        background-color: rgb(220, 220, 220);
+        background-color: rgb(239, 50, 129, 0.5);
       }
       td {
         border: 1px solid rgb(200, 200, 200);
-        border-bottom: 1.5px solid grey;
-        background-color: rgb(220, 220, 220);
+        background-color: rgb(239, 50, 129, 0.5);
         font-size: larger;
       }
     }
     td + td {
       margin-bottom: 20px;
     }
+  }
+  .chart-container {
+    position: relative;
+    height: 30vh;
+    width: 35vw;
   }
 }
 </style>

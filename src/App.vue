@@ -26,7 +26,7 @@ header {
   justify-content: center;
   align-items: center;
   height: 15vh;
-  background-color: rgb(233, 233, 233);
+  background-color: rgb(239, 50, 129, 0.5);
   box-shadow: 0 2px 3px -3px black;
   #title {
     font-size: x-large;

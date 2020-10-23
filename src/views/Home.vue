@@ -5,9 +5,10 @@
       <div>status: {{ status }}</div>
     </div>
     <globalResults
-      v-if="testResults.length && stressLevel.length"
+      v-if="testResults.length && dates.length && values.length"
       :testResults="testResults"
-      :stressLevel="stressLevel"
+      :dates="dates"
+      :values="values"
     />
   </div>
 </template>
@@ -25,8 +26,9 @@ export default {
     lastname: "",
     gender: 0,
     status: "",
-    stressLevel: [],
-    testResults: []
+    testResults: [],
+    dates: [],
+    values: []
   }),
   methods: {
     fetchData() {
@@ -37,10 +39,16 @@ export default {
             (this.lastname = data.lastname),
             (this.gender = data.gender),
             (this.status = data.status),
-            (this.stressLevel = data.stressLevel);
-          this.testResults = data.testResults;
+            (this.testResults = data.testResults),
+            (this.dates = data.stressLevel.map(stressLevel => {
+              return stressLevel.date;
+            }));
+          this.values = data.stressLevel.map(stressLevel => {
+            return stressLevel.value;
+          });
           console.log(data);
-          console.log(this.stressLevel);
+          console.log(this.dates);
+          console.log(this.values);
         });
     }
   },
