@@ -20,28 +20,20 @@ export default {
         this.testResultValue.score === ""
       )
         return null;
-      else if (this.testResultValue.score < 20) return "very-low";
+      else if (this.testResultValue.score < 25) return "very-low";
       else if (
-        this.testResultValue.score >= 20 &&
-        this.testResultValue.score < 40
+        this.testResultValue.score >= 25 &&
+        this.testResultValue.score < 50
       )
         return "low";
       else if (
-        this.testResultValue.score >= 40 &&
-        this.testResultValue.score < 60
+        this.testResultValue.score >= 50 &&
+        this.testResultValue.score < 75
       )
         return "average";
-      else if (
-        this.testResultValue.score >= 60 &&
-        this.testResultValue.score < 80
-      )
-        return "high";
 
-      return "very-high";
+      return "high";
     }
-  },
-  mounted() {
-    this.scoreValue();
   }
 };
 </script>
@@ -51,7 +43,7 @@ export default {
 tr,
 td {
   border: 1px solid rgb(200, 200, 200);
-  text-align: center;
+  text-align: left;
   padding: 1em;
 }
 #score {
@@ -61,12 +53,11 @@ td {
   &.very-low,
   &.low,
   &.average,
-  &.high,
-  &.very-high {
+  &.high {
     color: white;
   }
   &.very-low {
-    background-color: #dc3a1251;
+    background-color: #dc3a12f3;
   }
   &.low {
     background-color: #ff9900;
@@ -75,9 +66,6 @@ td {
     background-color: #109618;
   }
   &.high {
-    background-color: #00bfff;
-  }
-  &.very-high {
     background-color: #0000ff;
   }
 }

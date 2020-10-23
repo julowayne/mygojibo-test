@@ -66,6 +66,6 @@ export default {
   flex-direction: column;
   height: 5vh;
   margin-top: 15px;
-  font-size: larger;
+  font-size: x-large;
 }
 </style>

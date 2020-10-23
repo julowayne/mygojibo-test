@@ -3,25 +3,42 @@
     <div class="chart-container">
       <canvas id="stress" width="400" height="400"></canvas>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th colspan="3">Stress Results</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Name</td>
-          <td>Date</td>
-          <td>Score</td>
-        </tr>
-        <testResultsValue
-          v-for="(testResultValue, index) in testResults"
-          :key="index"
-          :testResultValue="testResultValue"
-        />
-      </tbody>
-    </table>
+    <div class="tables-container">
+      <table id="stress-result">
+        <tbody>
+          <tr id="headline">
+            <td>Name</td>
+            <td>Date</td>
+            <td>Score</td>
+          </tr>
+          <testResultsValue
+            v-for="(testResultValue, index) in testResults"
+            :key="index"
+            :testResultValue="testResultValue"
+          />
+        </tbody>
+      </table>
+      <table id="table-legend">
+        <tbody>
+          <tr>
+            <td id="very-low">&lt; 25</td>
+            <td>Very-low</td>
+          </tr>
+          <tr>
+            <td id="low">25 &amp; 50</td>
+            <td>Low</td>
+          </tr>
+          <tr>
+            <td id="average">50 &amp; 75</td>
+            <td>Average</td>
+          </tr>
+          <tr>
+            <td id="high">&gt; 75</td>
+            <td>High</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -92,36 +109,62 @@ export default {
   padding: 0 10%;
   margin-top: 20px;
   height: 75vh;
-  table {
-    border-collapse: collapse;
-    letter-spacing: 1px;
-    font-family: sans-serif;
-    font-size: 1rem;
-    td {
-      text-align: left;
-      padding: 1.5rem;
-    }
-    tr {
-      th {
-        border: 1px solid lightgrey;
-        padding: 1.5em;
-        text-align: center;
-        background-color: rgb(239, 50, 129, 0.5);
-      }
-      td {
-        border: 1px solid rgb(200, 200, 200);
-        background-color: rgb(239, 50, 129, 0.5);
-        font-size: larger;
-      }
-    }
-    td + td {
-      margin-bottom: 20px;
-    }
-  }
   .chart-container {
     position: relative;
     height: 30vh;
     width: 35vw;
+  }
+  .tables-container {
+    display: flex;
+    justify-content: space-between;
+    #stress-result {
+      border-collapse: collapse;
+      letter-spacing: 1px;
+      font-family: sans-serif;
+      font-size: 1rem;
+      #headline {
+        td {
+          border: 1px solid rgb(200, 200, 200);
+          font-weight: bold;
+          background-color: rgb(220, 220, 220);
+          font-size: larger;
+          text-align: left;
+        }
+      }
+      td {
+        padding: 1.5rem;
+      }
+      td + td {
+        margin-bottom: 20px;
+      }
+    }
+    #table-legend {
+      border-collapse: collapse;
+      letter-spacing: 1px;
+      font-family: sans-serif;
+      font-size: 1rem;
+      tr {
+        td {
+          td:first-child {
+            color: white;
+          }
+          padding: 0.4rem 0.75rem;
+        }
+      }
+
+      #very-low {
+        background-color: #dc3a12f3;
+      }
+      #low {
+        background-color: #ff9900;
+      }
+      #average {
+        background-color: #109618;
+      }
+      #high {
+        background-color: #0000ff;
+      }
+    }
   }
 }
 </style>
