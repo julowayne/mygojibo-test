@@ -15,6 +15,9 @@
 
 <script>
 import globalResults from "@/components/globalResults.vue";
+import "bootstrap";
+import "jquery";
+import "popper.js";
 
 export default {
   name: "HelloWorld",
@@ -60,12 +63,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+@import "~bootstrap/scss/bootstrap";
 #person {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+  text-align: left;
   height: 5vh;
   margin-top: 15px;
   font-size: x-large;
+  color: $gray-600;
+  padding: 0 10%;
 }
 </style>

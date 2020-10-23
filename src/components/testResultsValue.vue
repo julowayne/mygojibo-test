@@ -1,38 +1,40 @@
 <template>
   <tr>
-    <td>{{ testResultValue.name }}</td>
+    <td>
+      <img v-if="testResultValue" :src="nameImages" alt="name image" />
+      {{ testResultValue.name }}
+    </td>
     <td>{{ testResultValue.date }}</td>
-    <td id="score" :class="scoreValue">{{ testResultValue.score }}</td>
+    <td id="score">
+      <div class="progress" style="height: 25px;">
+        <div
+          class="progress-bar"
+          role="progressbar"
+          :style="{ width: `${testResultValue.score}%` }"
+          :aria-valuenow="testResultValue"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          {{ testResultValue.score }}%
+        </div>
+      </div>
+    </td>
   </tr>
 </template>
 
 <script>
+import "bootstrap";
+import "jquery";
+import "popper.js";
 export default {
   name: "testResultsValue",
-
   props: {
     testResultValue: Object
   },
   computed: {
-    scoreValue() {
-      if (
-        this.testResultValue.score === "" ||
-        this.testResultValue.score === ""
-      )
-        return null;
-      else if (this.testResultValue.score < 25) return "very-low";
-      else if (
-        this.testResultValue.score >= 25 &&
-        this.testResultValue.score < 50
-      )
-        return "low";
-      else if (
-        this.testResultValue.score >= 50 &&
-        this.testResultValue.score < 75
-      )
-        return "average";
-
-      return "high";
+    nameImages() {
+      const image = this.testResultValue.name.toLowerCase();
+      return require(`../assets/${image}.png`);
     }
   }
 };
@@ -40,21 +42,26 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+@import "~bootstrap/scss/bootstrap";
+
 tr,
 td {
-  border: 1px solid rgb(200, 200, 200);
   text-align: left;
   padding: 1em;
+  color: $gray-600;
+  td:last-child {
+    text-align: left;
+  }
 }
 #score {
   padding: 1.5rem 2rem;
   background-color: #e9ecef;
-  color: grey;
+  color: $teal;
   &.very-low,
   &.low,
   &.average,
   &.high {
-    color: white;
+    color: $gray-600;
   }
   &.very-low {
     background-color: #dc3a12f3;
@@ -63,10 +70,10 @@ td {
     background-color: #ff9900;
   }
   &.average {
-    background-color: #109618;
+    background-color: #0000ff9f;
   }
   &.high {
-    background-color: #0000ff;
+    background-color: #109618;
   }
 }
 </style>

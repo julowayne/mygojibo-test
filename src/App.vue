@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <header>
+    <header class="shadow-sm">
       <div id="title">Stress test results</div>
     </header>
     <router-view />
@@ -9,10 +9,10 @@
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-
+@import "~bootstrap/scss/bootstrap";
 body {
   margin: 0;
-  background-color: rgb(230, 230, 230);
+  background-color: $gray-200;
 }
 #app {
   font-family: Roboto;
@@ -27,11 +27,11 @@ header {
   justify-content: center;
   align-items: center;
   height: 10vh;
-  background-color: rgb(239, 50, 129, 0.7);
+  background-color: $teal;
   box-shadow: 0 2px 3px -3px black;
   #title {
     font-size: x-large;
-    font-weight: bold;
+    color: $gray-600;
   }
 }
 </style>
