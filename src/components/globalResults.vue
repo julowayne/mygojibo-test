@@ -1,5 +1,6 @@
 <template>
   <div id="results">
+    <div class="table-title">Stress level</div>
     <div id="chart">
       <canvas
         id="stress"
@@ -7,23 +8,21 @@
         role="chart"
       ></canvas>
     </div>
-    <div class="table-title">Stress Results</div>
-    <div class="tables-container">
-      <table id="stress-result" class="table container mt-6">
-        <tbody>
-          <tr id="headline">
-            <th scope="col">Name</th>
-            <th scope="col">Date</th>
-            <th scope="col">Score</th>
-          </tr>
-          <testResultsValue
-            v-for="(testResultValue, index) in testResults"
-            :key="index"
-            :testResultValue="testResultValue"
-          />
-        </tbody>
-      </table>
-    </div>
+    <div class="table-title">Stress results</div>
+    <table id="stress-result" class="table container">
+      <tbody>
+        <tr id="headline">
+          <th>Name</th>
+          <th>Date</th>
+          <th>Score</th>
+        </tr>
+        <testResultsValue
+          v-for="(testResultValue, index) in testResults"
+          :key="index"
+          :testResultValue="testResultValue"
+        />
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -91,7 +90,7 @@ export default {
             display: true,
             text: "Stress level representation",
             fontSize: 15,
-            fontColor: "$gray-200"
+            fontColor: "$gray-600"
           },
           layout: {
             padding: {
@@ -123,62 +122,27 @@ export default {
       margin-bottom: 40px;
     }
   }
-  hr {
-    width: 30%;
-  }
   .table-title {
+    text-align: left;
     height: 5vh;
-    margin-top: 15px;
+    margin: 15px auto 10px;
     font-size: x-large;
     color: $gray-600;
+    padding: 0 10%;
   }
-  .tables-container {
-    display: flex;
-    justify-content: center;
-    #stress-result {
-      border-collapse: collapse;
-      letter-spacing: 1px;
-      font-family: sans-serif;
-      font-size: 1rem;
-      margin-bottom: 50px;
-      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-      #headline {
+  #stress-result {
+    letter-spacing: 1px;
+    font-family: sans-serif;
+    margin: 0 10% 10% 10%;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    #headline {
+      text-align: left;
+      color: $gray-700;
+      td {
+        font-weight: bold;
+        background-color: rgb(220, 220, 220);
+        font-size: larger;
         text-align: left;
-        color: $gray-700;
-        td {
-          font-weight: bold;
-          background-color: rgb(220, 220, 220);
-          font-size: larger;
-          text-align: left;
-        }
-      }
-    }
-    #table-legend {
-      border-collapse: collapse;
-      letter-spacing: 1px;
-      font-family: sans-serif;
-      font-size: 1rem;
-      margin-left: 50px;
-      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-      tr {
-        td {
-          padding: 0.4rem 0.75rem;
-        }
-      }
-      td:first-child {
-        color: white;
-      }
-      #very-low {
-        background-color: #dc3a12f3;
-      }
-      #low {
-        background-color: #ff9900;
-      }
-      #average {
-        background-color: #0000ff9f;
-      }
-      #high {
-        background-color: #109618;
       }
     }
   }

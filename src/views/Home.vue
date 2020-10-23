@@ -1,9 +1,15 @@
 <template>
   <div>
-    <div id="person">
-      <div>Name: {{ firstname }} {{ lastname }}</div>
-      <div>status: {{ status }}</div>
-    </div>
+    <header class="shadow-sm">
+      <div id="title">Gojibo</div>
+      <div id="account">
+        <div id="person">Hi, {{ firstname }} {{ lastname }}</div>
+        <div id="img">
+          <a href=""><img src="../assets/photo.jpg" alt="profil-picture"/></a>
+        </div>
+      </div>
+      <!-- <div id="img"><img src="../assets/photo.jpg" alt="profil-picture" /></div> -->
+    </header>
     <globalResults
       v-if="testResults.length && dates.length && values.length"
       :testResults="testResults"
@@ -64,12 +70,34 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "~bootstrap/scss/bootstrap";
-#person {
-  text-align: left;
-  height: 5vh;
-  margin-top: 15px;
-  font-size: x-large;
-  color: $gray-600;
-  padding: 0 10%;
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 10vh;
+  background-color: $teal;
+  box-shadow: 0 2px 3px -3px black;
+  #account {
+    display: flex;
+    align-items: center;
+    color: $gray-600;
+    #person {
+      font-size: x-large;
+    }
+    #img {
+      img {
+        margin-left: 20%;
+        border-radius: 50%;
+        box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.15) !important;
+        width: 25%;
+        height: 25%;
+      }
+    }
+  }
+  #title {
+    margin-left: 5%;
+    font-size: 40px;
+    color: $gray-600;
+  }
 }
 </style>
