@@ -12,6 +12,7 @@
 
 body {
   margin: 0;
+  background-color: rgb(230, 230, 230);
 }
 #app {
   font-family: Roboto;
@@ -25,8 +26,8 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 15vh;
-  background-color: rgb(239, 50, 129, 0.5);
+  height: 10vh;
+  background-color: rgb(239, 50, 129, 0.7);
   box-shadow: 0 2px 3px -3px black;
   #title {
     font-size: x-large;

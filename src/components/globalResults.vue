@@ -1,8 +1,14 @@
 <template>
   <div id="results">
-    <div class="chart-container">
-      <canvas id="stress" width="400" height="400"></canvas>
+    <div id="chart">
+      <canvas
+        id="stress"
+        aria-label="Stress level line chart"
+        role="chart"
+      ></canvas>
     </div>
+    <hr />
+    <div class="table-title">Stress Results</div>
     <div class="tables-container">
       <table id="stress-result">
         <tbody>
@@ -70,16 +76,18 @@ export default {
               label: "Stress value",
               data: this.values,
               backgroundColor: ["rgb(239,50,129, .7)"],
-              borderColor: ["rgba(255, 255, 255)"],
+              borderColor: ["#109618"],
               pointBackgroundColor: "rgba(235, 149, 50, 1)"
             }
           ]
         },
         options: {
+          responsive: true,
           scales: {
             yAxes: [
               {
                 ticks: {
+                  fontColor: "#000",
                   beginAtZero: true,
                   min: 0,
                   max: 100,
@@ -88,7 +96,28 @@ export default {
                   }
                 }
               }
+            ],
+            xAxes: [
+              {
+                ticks: {
+                  fontColor: "#000"
+                }
+              }
             ]
+          },
+          title: {
+            display: true,
+            text: "Stress level representation",
+            fontSize: 20,
+            fontColor: "#000"
+          },
+          layout: {
+            padding: {
+              left: 200,
+              right: 200,
+              top: 0,
+              bottom: 50
+            }
           }
         }
       });
@@ -103,25 +132,27 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 #results {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  padding: 0 10%;
   margin-top: 20px;
-  height: 75vh;
-  .chart-container {
-    position: relative;
-    height: 30vh;
-    width: 35vw;
+  #chart {
+    padding: 0 10%;
+  }
+  hr {
+    width: 30%;
+  }
+  .table-title {
+    height: 5vh;
+    margin-top: 15px;
+    font-size: x-large;
   }
   .tables-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     #stress-result {
       border-collapse: collapse;
       letter-spacing: 1px;
       font-family: sans-serif;
       font-size: 1rem;
+      margin-bottom: 50px;
       #headline {
         td {
           border: 1px solid rgb(200, 200, 200);
@@ -143,6 +174,7 @@ export default {
       letter-spacing: 1px;
       font-family: sans-serif;
       font-size: 1rem;
+      margin-left: 50px;
       tr {
         td {
           td:first-child {
