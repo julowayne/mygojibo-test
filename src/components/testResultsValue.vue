@@ -48,5 +48,11 @@ tr,
 td {
   text-align: left;
   color: $gray-600;
+  td:first-child {
+    color: $black;
+  }
+  img {
+    margin-right: 20px;
+  }
 }
 </style>

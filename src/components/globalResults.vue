@@ -4,20 +4,14 @@
       <div id="chart-title">Stress level</div>
       <canvas
         id="stress"
-        class="shadow-sm"
         aria-label="Stress level line chart"
         role="chart"
       ></canvas>
     </div>
     <div id="stress-result">
       <div id="table-title">Stress results</div>
-      <table class="table shadow-sm">
+      <table class="table">
         <tbody>
-          <tr id="headline">
-            <th>Name</th>
-            <th>Date</th>
-            <th>Score</th>
-          </tr>
           <testResultsValue
             v-for="(testResultValue, index) in testResults"
             :key="index"
@@ -89,20 +83,30 @@ export default {
               }
             ]
           },
+          legend: {
+            display: false
+          },
+          tooltips: {
+            callbacks: {
+              label: function(tooltipItem) {
+                return tooltipItem.yLabel;
+              }
+            }
+          }
           /*    title: {
             display: true,
             text: "Stress level representation",
             fontSize: 15,
             fontColor: "$gray-600"
           }, */
-          layout: {
+          /*  layout: {
             padding: {
-              left: 200,
+              left: 0,
               right: 200,
               top: 30,
               bottom: 30
             }
-          }
+          } */
         }
       });
     }
@@ -118,17 +122,20 @@ export default {
 @import "~bootstrap/scss/bootstrap";
 #results {
   #chart {
-    background-color: $gray-200;
-    padding: 2rem;
-    border-radius: 4px;
+    background-color: $gray-100;
+    padding: 1.5rem;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow-sm;
+    border: $border-color 1px solid;
     margin-bottom: 30px;
     margin: 0 10% 1% 10%;
     #chart-title {
       text-align: left;
       height: 5vh;
-      margin: 15px auto 10px;
+      margin: 0 0 1rem 1rem;
       font-size: x-large;
-      color: $gray-600;
+      color: $teal;
+      padding: 0.5rem;
     }
     /*   #stress {
       box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
@@ -136,29 +143,21 @@ export default {
     } */
   }
   #stress-result {
-    background-color: $gray-200;
+    background-color: $gray-100;
     letter-spacing: 1px;
     font-family: sans-serif;
     margin: 0 10% 10% 10%;
-    padding: 2rem;
-    border-radius: 3px;
+    padding: 1.5rem;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow-sm;
+    border: $border-color 1px solid;
     #table-title {
       text-align: left;
       height: 5vh;
-      margin: 15px auto 10px;
+      margin: 0 0 1rem 1rem;
       font-size: x-large;
-      color: $gray-600;
+      color: $teal;
       padding: 0.5rem;
-    }
-    #headline {
-      text-align: left;
-      color: $gray-700;
-      td {
-        font-weight: bold;
-        background-color: rgb(220, 220, 220);
-        font-size: larger;
-        text-align: left;
-      }
     }
   }
 }
