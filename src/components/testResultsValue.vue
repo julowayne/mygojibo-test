@@ -43,6 +43,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "~bootstrap/scss/bootstrap";
+
 tr,
 td {
   text-align: left;

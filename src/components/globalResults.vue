@@ -1,28 +1,31 @@
 <template>
   <div id="results">
-    <div class="table-title">Stress level</div>
     <div id="chart">
+      <div id="chart-title">Stress level</div>
       <canvas
         id="stress"
+        class="shadow-sm"
         aria-label="Stress level line chart"
         role="chart"
       ></canvas>
     </div>
-    <div class="table-title">Stress results</div>
-    <table id="stress-result" class="table container">
-      <tbody>
-        <tr id="headline">
-          <th>Name</th>
-          <th>Date</th>
-          <th>Score</th>
-        </tr>
-        <testResultsValue
-          v-for="(testResultValue, index) in testResults"
-          :key="index"
-          :testResultValue="testResultValue"
-        />
-      </tbody>
-    </table>
+    <div id="stress-result">
+      <div id="table-title">Stress results</div>
+      <table class="table shadow-sm">
+        <tbody>
+          <tr id="headline">
+            <th>Name</th>
+            <th>Date</th>
+            <th>Score</th>
+          </tr>
+          <testResultsValue
+            v-for="(testResultValue, index) in testResults"
+            :key="index"
+            :testResultValue="testResultValue"
+          />
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -86,18 +89,18 @@ export default {
               }
             ]
           },
-          title: {
+          /*    title: {
             display: true,
             text: "Stress level representation",
             fontSize: 15,
             fontColor: "$gray-600"
-          },
+          }, */
           layout: {
             padding: {
               left: 200,
               right: 200,
-              top: 0,
-              bottom: 50
+              top: 30,
+              bottom: 30
             }
           }
         }
@@ -114,27 +117,39 @@ export default {
 <style lang="scss" scoped>
 @import "~bootstrap/scss/bootstrap";
 #results {
-  margin-top: 20px;
   #chart {
-    padding: 0 10%;
-    #stress {
+    background-color: $gray-200;
+    padding: 2rem;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    margin: 0 10% 1% 10%;
+    #chart-title {
+      text-align: left;
+      height: 5vh;
+      margin: 15px auto 10px;
+      font-size: x-large;
+      color: $gray-600;
+    }
+    /*   #stress {
       box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
       margin-bottom: 40px;
-    }
-  }
-  .table-title {
-    text-align: left;
-    height: 5vh;
-    margin: 15px auto 10px;
-    font-size: x-large;
-    color: $gray-600;
-    padding: 0 10%;
+    } */
   }
   #stress-result {
+    background-color: $gray-200;
     letter-spacing: 1px;
     font-family: sans-serif;
     margin: 0 10% 10% 10%;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    padding: 2rem;
+    border-radius: 3px;
+    #table-title {
+      text-align: left;
+      height: 5vh;
+      margin: 15px auto 10px;
+      font-size: x-large;
+      color: $gray-600;
+      padding: 0.5rem;
+    }
     #headline {
       text-align: left;
       color: $gray-700;

@@ -77,10 +77,11 @@ header {
   height: 10vh;
   background-color: $teal;
   box-shadow: 0 2px 3px -3px black;
+  margin-bottom: 30px;
   #account {
     display: flex;
     align-items: center;
-    color: $gray-600;
+    color: $white;
     #person {
       font-size: x-large;
     }
@@ -97,7 +98,7 @@ header {
   #title {
     margin-left: 5%;
     font-size: 40px;
-    color: $gray-600;
+    color: $white;
   }
 }
 </style>

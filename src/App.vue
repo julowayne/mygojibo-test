@@ -9,7 +9,7 @@
 @import "~bootstrap/scss/bootstrap";
 body {
   margin: 0;
-  background-color: $gray-200;
+  background-color: $gray-100;
 }
 #app {
   font-family: Roboto;
