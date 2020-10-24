@@ -41,6 +41,7 @@ export default {
   },
   methods: {
     stressLine() {
+      Chart.defaults.global.legend.display = false;
       var stressData = document.getElementById("stress").getContext("2d");
       // eslint-disable-next-line no-unused-vars
       var stress = new Chart(stressData, {
@@ -71,11 +72,21 @@ export default {
           ]
         },
         options: {
+          /*   label: {
+            display: false
+          },
+          tooltips: {
+            callbacks: {
+              label: function(tooltipItem) {
+                console.log(tooltipItem);
+                return tooltipItem.yLabel;
+              }
+            }
+          }, */
           scales: {
             yAxes: [
               {
                 ticks: {
-                  fontColor: "$gray-600",
                   beginAtZero: true,
                   min: 0,
                   max: 100,
@@ -84,18 +95,7 @@ export default {
                   }
                 }
               }
-            ],
-            xAxes: [
-              {
-                ticks: {
-                  fontColor: "$gray-600",
-                  color: "$gray-600"
-                }
-              }
             ]
-          },
-          label: {
-            display: false
           }
         }
       });
