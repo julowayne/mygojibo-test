@@ -5,7 +5,12 @@
       <div id="account">
         <div id="person">Hi, {{ firstname }} {{ lastname }}</div>
         <div id="img">
-          <a href=""><img src="../assets/photo.jpg" alt="profil-picture"/></a>
+          <a href=""
+            ><img
+              class="shadow-sm"
+              src="../assets/photo.jpg"
+              alt="profil-picture"
+          /></a>
         </div>
       </div>
       <!-- <div id="img"><img src="../assets/photo.jpg" alt="profil-picture" /></div> -->
@@ -89,7 +94,6 @@ header {
       img {
         margin-left: 20%;
         border-radius: 50%;
-        box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.15) !important;
         width: 25%;
         height: 25%;
       }
