@@ -1,20 +1,21 @@
 <template>
   <div>
-    <header class="shadow-sm">
-      <div id="title">Gojibo</div>
-      <div id="account">
-        <div id="person">Hi, {{ firstname }} {{ lastname }}</div>
-        <div id="img">
-          <a href=""><img src="../assets/photo.jpg" alt="profil-picture"/></a>
-        </div>
-      </div>
-      <!-- <div id="img"><img src="../assets/photo.jpg" alt="profil-picture" /></div> -->
-    </header>
+    <div id="header">
+      <nav class="navbar navbar-light container">
+        <a class="navbar-brand d-flex justify-content-start" href="#">
+          Gojibo
+        </a>
+        <a class="d-flex justify-content-end" href=""
+          ><img src="../assets/photo.jpg" alt="profil-picture"
+        /></a>
+      </nav>
+    </div>
+
     <globalResults
-      v-if="testResults.length && dates.length && values.length"
+      v-if="testResults.length && stressDates.length && stressValues.length"
       :testResults="testResults"
-      :dates="dates"
-      :values="values"
+      :stressDates="stressDates"
+      :stressValues="stressValues"
     />
   </div>
 </template>
@@ -36,8 +37,8 @@ export default {
     gender: 0,
     status: "",
     testResults: [],
-    dates: [],
-    values: []
+    stressDates: [],
+    stressValues: []
   }),
   methods: {
     fetchData() {
@@ -49,15 +50,14 @@ export default {
             (this.gender = data.gender),
             (this.status = data.status),
             (this.testResults = data.testResults),
-            (this.dates = data.stressLevel.map(stressLevel => {
+            (this.stressDates = data.stressLevel.map(stressLevel => {
               return stressLevel.date;
             }));
-          this.values = data.stressLevel.map(stressLevel => {
+          this.stressValues = data.stressLevel.map(stressLevel => {
             return stressLevel.value;
           });
           console.log(data);
-          console.log(this.dates);
-          console.log(this.values);
+          console.log(this.stressDates);
         });
     }
   },
@@ -70,35 +70,22 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "~bootstrap/scss/bootstrap";
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 10vh;
+#header {
   background-color: $teal;
-  box-shadow: 0 2px 3px -3px black;
-  margin-bottom: 30px;
-  #account {
-    display: flex;
-    align-items: center;
-    color: $white;
-    #person {
-      font-size: x-large;
+  box-shadow: $box-shadow-sm;
+  margin-bottom: $spacer * 3;
+  nav {
+    a:first-child {
+      color: $white;
+      font-size: xx-large;
     }
-    #img {
-      img {
-        margin-left: 20%;
-        border-radius: 50%;
-        width: 20%;
-        height: 20%;
-        border: $white 1px solid;
-      }
+    img {
+      margin-left: 20%;
+      border-radius: 50%;
+      width: 20%;
+      height: 20%;
+      box-shadow: $box-shadow-sm;
     }
-  }
-  #title {
-    margin-left: 5%;
-    font-size: 40px;
-    color: $white;
   }
 }
 </style>

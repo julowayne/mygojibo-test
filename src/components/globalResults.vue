@@ -11,13 +11,11 @@
     <div id="stress-result">
       <div id="table-title">Stress results</div>
       <table class="table">
-        <tbody>
-          <testResultsValue
-            v-for="(testResultValue, index) in testResults"
-            :key="index"
-            :testResultValue="testResultValue"
-          />
-        </tbody>
+        <testResultsValue
+          v-for="(testResultValue, index) in testResults"
+          :key="index"
+          :testResultValue="testResultValue"
+        />
       </table>
     </div>
   </div>
@@ -25,20 +23,20 @@
 
 <script>
 import Chart from "chart.js";
+import dayjs from "dayjs";
 import "bootstrap";
 import "jquery";
 import "popper.js";
 
 import testResultsValue from "@/components/testResultsValue.vue";
-
 export default {
   name: "GlobalResults",
   components: {
     testResultsValue
   },
   props: {
-    dates: Array,
-    values: Array,
+    stressDates: Array,
+    stressValues: Array,
     testResults: Array
   },
   methods: {
@@ -48,11 +46,24 @@ export default {
       var stress = new Chart(stressData, {
         type: "line",
         data: {
-          labels: this.dates,
+          labels: [
+            dayjs(this.stressDates[0]).format("DD.MM"),
+            dayjs(this.stressDates[1]).format("DD.MM"),
+            dayjs(this.stressDates[2]).format("DD.MM"),
+            dayjs(this.stressDates[3]).format("DD.MM"),
+            dayjs(this.stressDates[4]).format("DD.MM"),
+            dayjs(this.stressDates[5]).format("DD.MM"),
+            dayjs(this.stressDates[6]).format("DD.MM"),
+            dayjs(this.stressDates[7]).format("DD.MM"),
+            dayjs(this.stressDates[8]).format("DD.MM"),
+            dayjs(this.stressDates[9]).format("DD.MM"),
+            dayjs(this.stressDates[10]).format("DD.MM"),
+            dayjs(this.stressDates[11]).format("DD.MM")
+          ],
           datasets: [
             {
               label: "Stress value",
-              data: this.values,
+              data: this.stressValues,
               backgroundColor: ["#20c997"],
               borderColor: ["#109618"],
               pointBackgroundColor: "rgba(235, 149, 50, 1)"
@@ -60,7 +71,6 @@ export default {
           ]
         },
         options: {
-          responsive: true,
           scales: {
             yAxes: [
               {
@@ -78,35 +88,15 @@ export default {
             xAxes: [
               {
                 ticks: {
-                  fontColor: "$gray-600"
+                  fontColor: "$gray-600",
+                  color: "$gray-600"
                 }
               }
             ]
           },
-          legend: {
+          label: {
             display: false
-          },
-          tooltips: {
-            callbacks: {
-              label: function(tooltipItem) {
-                return tooltipItem.yLabel;
-              }
-            }
           }
-          /*    title: {
-            display: true,
-            text: "Stress level representation",
-            fontSize: 15,
-            fontColor: "$gray-600"
-          }, */
-          /*  layout: {
-            padding: {
-              left: 0,
-              right: 200,
-              top: 30,
-              bottom: 30
-            }
-          } */
         }
       });
     }
@@ -137,10 +127,6 @@ export default {
       color: $teal;
       padding: 0.5rem;
     }
-    /*   #stress {
-      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-      margin-bottom: 40px;
-    } */
   }
   #stress-result {
     background-color: $gray-100;

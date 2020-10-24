@@ -4,7 +4,7 @@
       <img v-if="testResultValue" :src="nameImages" alt="name image" />
       {{ testResultValue.name }}
     </td>
-    <td>{{ testResultValue.date }}</td>
+    <td>{{ formatDate }}</td>
     <td>
       <div class="progress" style="height: 25px;">
         <div
@@ -26,6 +26,7 @@
 import "bootstrap";
 import "jquery";
 import "popper.js";
+import dayjs from "dayjs";
 export default {
   name: "testResultsValue",
   props: {
@@ -35,6 +36,9 @@ export default {
     nameImages() {
       const image = this.testResultValue.name.toLowerCase();
       return require(`../assets/${image}.png`);
+    },
+    formatDate() {
+      return dayjs(this.testResultValue.date).format("DD.MM");
     }
   }
 };
@@ -43,11 +47,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "~bootstrap/scss/bootstrap";
-
+td {
+  padding: 0;
+}
 tr,
 td {
   text-align: left;
   color: $gray-600;
+  padding: 0;
   td:first-child {
     color: $black;
   }
