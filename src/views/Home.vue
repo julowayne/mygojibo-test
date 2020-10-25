@@ -88,8 +88,8 @@ export default {
     a {
       img {
         border-radius: 50%;
-        width: 15%;
-        height: 15%;
+        width: 25%;
+        height: 25%;
         box-shadow: $box-shadow-sm;
       }
     }
@@ -120,6 +120,12 @@ export default {
     nav {
       a:last-child {
         width: 50%;
+      }
+      a {
+        img {
+          width: 30%;
+          height: 30%;
+        }
       }
     }
   }
