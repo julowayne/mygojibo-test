@@ -100,7 +100,7 @@ export default {
   display: flex;
   text-align: left;
   #welcome {
-    margin-top: 30px;
+    margin: 30px 0 0 15px;
     font-size: 20px;
     letter-spacing: 1px;
     div:first-child {
