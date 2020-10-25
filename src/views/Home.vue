@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="header">
-      <nav class="navbar navbar-light">
+      <nav class="navbar navbar-light container">
         <a class="navbar-brand d-flex justify-content-start" href="#">
           Gojibo
         </a>
@@ -12,9 +12,10 @@
     </div>
     <div class="container">
       <div id="person">
-        <div>
-          <img src="../assets/welcome.svg" alt="" />Hi, {{ firstname }}
-          {{ lastname }} you can check your last results !
+        <div><img src="../assets/welcome.svg" alt="" /></div>
+        <div id="welcome">
+          <div>Hi {{ firstname }} {{ lastname }}</div>
+          <div>You can check your last results !</div>
         </div>
       </div>
       <globalResults
@@ -84,10 +85,8 @@ export default {
     a:first-child {
       color: $white;
       font-size: xx-large;
-      margin-left: 20%;
     }
     a {
-      margin-right: 20%;
       img {
         border-radius: 50%;
         width: 20%;
@@ -98,10 +97,22 @@ export default {
   }
 }
 #person {
-  margin: 0 10%;
+  display: flex;
   text-align: left;
-  img {
-    width: 15%;
+  #welcome {
+    margin-top: 30px;
+    font-size: 20px;
+    letter-spacing: 1px;
+    div:first-child {
+      font-size: 30px;
+      font-weight: bold;
+      color: $teal;
+    }
+  }
+  div {
+    img {
+      width: 100%;
+    }
   }
 }
 </style>

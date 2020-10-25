@@ -114,13 +114,11 @@ export default {
     box-shadow: $box-shadow-sm;
     border: $border-color 1px solid;
     margin-bottom: 30px;
-    margin: 0 10% 1% 10%;
   }
   #stress-result {
     background-color: $gray-100;
     letter-spacing: 1px;
     font-family: sans-serif;
-    margin: 0 10% 10%;
     padding: 1.5rem;
     border-radius: $border-radius;
     box-shadow: $box-shadow-sm;
