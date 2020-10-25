@@ -10,13 +10,11 @@
     </div>
     <div id="stress-result">
       <div class="title">Stress results</div>
-      <table class="table">
-        <testResultsValue
-          v-for="(testResultValue, index) in testResults"
-          :key="index"
-          :testResultValue="testResultValue"
-        />
-      </table>
+      <testResultsValue
+        v-for="(testResultValue, index) in testResults"
+        :key="index"
+        :testResultValue="testResultValue"
+      />
     </div>
   </div>
 </template>
@@ -41,33 +39,23 @@ export default {
   },
   methods: {
     stressLine() {
+      const chartDates = this.stressDates.map(date =>
+        dayjs(date, "D/MM/YYYY").format("DD/MM")
+      );
+      console.log(chartDates);
       Chart.defaults.global.legend.display = false;
       var stressData = document.getElementById("stress").getContext("2d");
       // eslint-disable-next-line no-unused-vars
       var stress = new Chart(stressData, {
         type: "line",
         data: {
-          labels: [
-            dayjs(this.stressDates[0]).format("DD.MM"),
-            dayjs(this.stressDates[1]).format("DD.MM"),
-            dayjs(this.stressDates[2]).format("DD.MM"),
-            dayjs(this.stressDates[3]).format("DD.MM"),
-            dayjs(this.stressDates[4]).format("DD.MM"),
-            dayjs(this.stressDates[5]).format("DD.MM"),
-            dayjs(this.stressDates[6]).format("DD.MM"),
-            dayjs(this.stressDates[7]).format("DD.MM"),
-            dayjs(this.stressDates[8]).format("DD.MM"),
-            dayjs(this.stressDates[9]).format("DD.MM"),
-            dayjs(this.stressDates[10]).format("DD.MM"),
-            dayjs(this.stressDates[11], "DD.MM.YYYY").format("DD.MM")
-          ],
+          labels: chartDates,
           datasets: [
             {
               label: "Stress value",
               data: this.stressValues,
-              backgroundColor: ["#20c997"],
-              borderColor: ["#109618"],
-              pointBackgroundColor: "rgba(235, 149, 50, 1)"
+              backgroundColor: "#20c997",
+              pointBackgroundColor: "#498c6c"
             }
           ]
         },
@@ -123,6 +111,13 @@ export default {
     border-radius: $border-radius;
     box-shadow: $box-shadow-sm;
     border: $border-color 1px solid;
+  }
+}
+@media (max-width: 504px) {
+  #results {
+    .title {
+      font-size: large;
+    }
   }
 }
 </style>

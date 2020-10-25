@@ -1,12 +1,14 @@
 <template>
-  <tr>
-    <td>
+  <div class="result">
+    <div class="icon">
       <img v-if="testResultValue" :src="nameImages" alt="name image" />
-      {{ testResultValue.name }}
-    </td>
-    <td>{{ formatDate }}</td>
-    <td>
-      <span>{{ testResultValue.score }}%</span>
+    </div>
+    <div class="info">
+      <div class="name">{{ testResultValue.name }}</div>
+      <div class="date">{{ formatDate }}</div>
+    </div>
+    <div class="score">{{ testResultValue.score }}%</div>
+    <div class="bar">
       <div class="progress">
         <div
           class="progress-bar"
@@ -17,8 +19,8 @@
           aria-valuemax="100"
         ></div>
       </div>
-    </td>
-  </tr>
+    </div>
+  </div>
 </template>
 <script>
 import "bootstrap";
@@ -27,6 +29,8 @@ import "popper.js";
 import dayjs from "dayjs";
 var customParseFormat = require("dayjs/plugin/customParseFormat");
 dayjs.extend(customParseFormat);
+var relativeTime = require("dayjs/plugin/relativeTime");
+dayjs.extend(relativeTime);
 export default {
   name: "testResultsValue",
   props: {
@@ -38,8 +42,8 @@ export default {
       return require(`../assets/${image}.png`);
     },
     formatDate() {
-      console.log(this.testResultValue.date);
-      return dayjs(this.testResultValue.date, "DD.MM").format("MM.DD");
+      var date = dayjs(this.testResultValue.date, "D/MM/YYYY");
+      return date.fromNow();
     }
   }
 };
@@ -48,29 +52,52 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "~bootstrap/scss/bootstrap";
-
-tr,
-td {
+.result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em;
   text-align: left;
-  color: $gray-600;
-  #score {
-    color: $black;
+  .icon {
+    margin-right: 1rem;
   }
-  .progress {
-    height: 25px;
+  .info {
+    flex-basis: 40%;
+    .name {
+      color: $black;
+    }
+
+    .date {
+      color: $text-muted;
+    }
   }
-  td:first-child {
-    color: $black;
+
+  .score {
+    color: $text-muted;
+    text-align: right;
+    margin-right: 0.5rem;
+    font-size: large;
+    flex-basis: 25%;
   }
-  td:nth-child(2n) {
-    vertical-align: middle;
+  .bar {
+    flex-basis: 25%;
+    .progress {
+      height: 20px;
+      background-color: $gray-300;
+      box-shadow: none;
+      .progress-bar {
+        background-color: $teal;
+      }
+    }
   }
-  td:last-child {
-    width: 150px;
-    vertical-align: middle;
-  }
-  img {
-    margin-right: 20px;
+}
+@media (max-width: 504px) {
+  .result {
+    .bar {
+      .progress {
+        height: 15px;
+      }
+    }
   }
 }
 </style>

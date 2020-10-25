@@ -15,7 +15,7 @@
         <div><img src="../assets/welcome.svg" alt="" /></div>
         <div id="welcome">
           <div>Hi {{ firstname }} {{ lastname }}</div>
-          <div>You can check your last results !</div>
+          <div>You can check your last results!</div>
         </div>
       </div>
       <globalResults
@@ -64,7 +64,7 @@ export default {
           this.stressValues = data.stressLevel.map(stressLevel => {
             return stressLevel.value;
           });
-          console.log(this.testResults);
+          console.log(this.stressDates);
         });
     }
   },
@@ -99,6 +99,7 @@ export default {
 #person {
   display: flex;
   text-align: left;
+  margin-bottom: 15px;
   #welcome {
     margin: 30px 0 0 15px;
     font-size: 20px;
@@ -112,6 +113,29 @@ export default {
   div {
     img {
       width: 100%;
+    }
+  }
+}
+@media (max-width: 504px) {
+  #header {
+    nav {
+      a:last-child {
+        width: 50%;
+        img {
+          width: 20%;
+          height: 20%;
+        }
+      }
+    }
+  }
+  #person {
+    #welcome {
+      font-size: 15px;
+      div:first-child {
+        font-size: 15px;
+        font-weight: bold;
+        color: $teal;
+      }
     }
   }
 }
