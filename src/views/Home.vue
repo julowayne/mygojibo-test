@@ -12,7 +12,7 @@
     </div>
     <div class="container">
       <div id="person">
-        <div><img src="../assets/welcome.svg" alt="" /></div>
+        <div><img src="../assets/welcome.png" alt="" /></div>
         <div id="welcome">
           <div>Hi {{ firstname }} {{ lastname }}</div>
           <div>You can check your last results!</div>
@@ -64,7 +64,6 @@ export default {
           this.stressValues = data.stressLevel.map(stressLevel => {
             return stressLevel.value;
           });
-          console.log(this.stressDates);
         });
     }
   },
@@ -89,8 +88,8 @@ export default {
     a {
       img {
         border-radius: 50%;
-        width: 20%;
-        height: 20%;
+        width: 15%;
+        height: 15%;
         box-shadow: $box-shadow-sm;
       }
     }
@@ -112,7 +111,7 @@ export default {
   }
   div {
     img {
-      width: 100%;
+      width: 150px;
     }
   }
 }
@@ -121,10 +120,6 @@ export default {
     nav {
       a:last-child {
         width: 50%;
-        img {
-          width: 20%;
-          height: 20%;
-        }
       }
     }
   }

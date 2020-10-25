@@ -42,7 +42,6 @@ export default {
       const chartDates = this.stressDates.map(date =>
         dayjs(date, "D/MM/YYYY").format("DD/MM")
       );
-      console.log(chartDates);
       Chart.defaults.global.legend.display = false;
       var stressData = document.getElementById("stress").getContext("2d");
       // eslint-disable-next-line no-unused-vars
@@ -84,7 +83,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "~bootstrap/scss/bootstrap";
 #results {
