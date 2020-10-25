@@ -10,7 +10,10 @@
         /></a>
       </nav>
     </div>
-
+    <div id="person">
+      Hi, {{ firstname }} {{ lastname }} you can check your last results !
+      <div><img src="../assets/welcome.svg" alt="" /></div>
+    </div>
     <globalResults
       v-if="testResults.length && stressDates.length && stressValues.length"
       :testResults="testResults"
@@ -86,6 +89,11 @@ export default {
       height: 20%;
       box-shadow: $box-shadow-sm;
     }
+  }
+}
+#person {
+  img {
+    width: 25%;
   }
 }
 </style>

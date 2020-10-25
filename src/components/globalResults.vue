@@ -132,7 +132,7 @@ export default {
     background-color: $gray-100;
     letter-spacing: 1px;
     font-family: sans-serif;
-    margin: 0 10% 10% 10%;
+    margin: 0 10% 10%;
     padding: 1.5rem;
     border-radius: $border-radius;
     box-shadow: $box-shadow-sm;

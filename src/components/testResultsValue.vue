@@ -6,7 +6,8 @@
     </td>
     <td>{{ formatDate }}</td>
     <td>
-      <div class="progress" style="height: 25px;">
+      <div id="score">{{ testResultValue.score }}%</div>
+      <div class="progress">
         <div
           class="progress-bar"
           role="progressbar"
@@ -14,9 +15,7 @@
           :aria-valuenow="testResultValue"
           aria-valuemin="0"
           aria-valuemax="100"
-        >
-          {{ testResultValue.score }}%
-        </div>
+        ></div>
       </div>
     </td>
   </tr>
@@ -40,6 +39,12 @@ export default {
     formatDate() {
       return dayjs(this.testResultValue.date).format("DD.MM");
     }
+    /*    progressDisplay() {
+      if (this.testResultValue.score === 0) {
+        return "displayNone";
+      }
+      return "";
+    } */
   }
 };
 </script>
@@ -47,14 +52,20 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "~bootstrap/scss/bootstrap";
-td {
-  padding: 0;
-}
+
 tr,
 td {
   text-align: left;
   color: $gray-600;
-  padding: 0;
+  #bar {
+    display: none;
+  }
+  #score {
+    color: $black;
+  }
+  .progress {
+    height: 25px;
+  }
   td:first-child {
     color: $black;
   }
