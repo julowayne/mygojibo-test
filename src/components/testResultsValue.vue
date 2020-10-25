@@ -6,7 +6,7 @@
     </td>
     <td>{{ formatDate }}</td>
     <td>
-      <div id="score">{{ testResultValue.score }}%</div>
+      <span>{{ testResultValue.score }}%</span>
       <div class="progress">
         <div
           class="progress-bar"
@@ -20,12 +20,13 @@
     </td>
   </tr>
 </template>
-
 <script>
 import "bootstrap";
 import "jquery";
 import "popper.js";
 import dayjs from "dayjs";
+var customParseFormat = require("dayjs/plugin/customParseFormat");
+dayjs.extend(customParseFormat);
 export default {
   name: "testResultsValue",
   props: {
@@ -37,14 +38,9 @@ export default {
       return require(`../assets/${image}.png`);
     },
     formatDate() {
-      return dayjs(this.testResultValue.date).format("DD.MM");
+      console.log(this.testResultValue.date);
+      return dayjs(this.testResultValue.date, "DD.MM").format("MM.DD");
     }
-    /*    progressDisplay() {
-      if (this.testResultValue.score === 0) {
-        return "displayNone";
-      }
-      return "";
-    } */
   }
 };
 </script>
@@ -57,9 +53,6 @@ tr,
 td {
   text-align: left;
   color: $gray-600;
-  #bar {
-    display: none;
-  }
   #score {
     color: $black;
   }
@@ -68,6 +61,13 @@ td {
   }
   td:first-child {
     color: $black;
+  }
+  td:nth-child(2n) {
+    vertical-align: middle;
+  }
+  td:last-child {
+    width: 150px;
+    vertical-align: middle;
   }
   img {
     margin-right: 20px;

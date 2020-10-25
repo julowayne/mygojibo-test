@@ -59,7 +59,7 @@ export default {
             dayjs(this.stressDates[8]).format("DD.MM"),
             dayjs(this.stressDates[9]).format("DD.MM"),
             dayjs(this.stressDates[10]).format("DD.MM"),
-            dayjs(this.stressDates[11]).format("DD.MM")
+            dayjs(this.stressDates[11], "DD.MM.YYYY").format("DD.MM")
           ],
           datasets: [
             {
@@ -122,10 +122,9 @@ export default {
     #chart-title {
       text-align: left;
       height: 5vh;
-      margin: 0 0 1rem 1rem;
+      margin: 0 0 1rem 0;
       font-size: x-large;
       color: $teal;
-      padding: 0.5rem;
     }
   }
   #stress-result {
@@ -140,10 +139,9 @@ export default {
     #table-title {
       text-align: left;
       height: 5vh;
-      margin: 0 0 1rem 1rem;
+      margin: 0 0 1rem 0;
       font-size: x-large;
       color: $teal;
-      padding: 0.5rem;
     }
   }
 }

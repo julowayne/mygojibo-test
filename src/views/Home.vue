@@ -59,8 +59,7 @@ export default {
           this.stressValues = data.stressLevel.map(stressLevel => {
             return stressLevel.value;
           });
-          console.log(data);
-          console.log(this.stressDates);
+          console.log(this.testResults);
         });
     }
   },
