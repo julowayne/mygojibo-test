@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="header">
-      <nav class="navbar navbar-light container">
+      <nav class="navbar navbar-light">
         <a class="navbar-brand d-flex justify-content-start" href="#">
           Gojibo
         </a>
@@ -10,16 +10,20 @@
         /></a>
       </nav>
     </div>
-    <div id="person">
-      Hi, {{ firstname }} {{ lastname }} you can check your last results !
-      <div><img src="../assets/welcome.svg" alt="" /></div>
+    <div class="container">
+      <div id="person">
+        <div>
+          <img src="../assets/welcome.svg" alt="" />Hi, {{ firstname }}
+          {{ lastname }} you can check your last results !
+        </div>
+      </div>
+      <globalResults
+        v-if="testResults.length && stressDates.length && stressValues.length"
+        :testResults="testResults"
+        :stressDates="stressDates"
+        :stressValues="stressValues"
+      />
     </div>
-    <globalResults
-      v-if="testResults.length && stressDates.length && stressValues.length"
-      :testResults="testResults"
-      :stressDates="stressDates"
-      :stressValues="stressValues"
-    />
   </div>
 </template>
 
@@ -80,19 +84,24 @@ export default {
     a:first-child {
       color: $white;
       font-size: xx-large;
-    }
-    img {
       margin-left: 20%;
-      border-radius: 50%;
-      width: 20%;
-      height: 20%;
-      box-shadow: $box-shadow-sm;
+    }
+    a {
+      margin-right: 20%;
+      img {
+        border-radius: 50%;
+        width: 20%;
+        height: 20%;
+        box-shadow: $box-shadow-sm;
+      }
     }
   }
 }
 #person {
+  margin: 0 10%;
+  text-align: left;
   img {
-    width: 25%;
+    width: 15%;
   }
 }
 </style>

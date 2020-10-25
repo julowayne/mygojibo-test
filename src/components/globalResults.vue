@@ -1,7 +1,7 @@
 <template>
   <div id="results">
     <div id="chart">
-      <div id="chart-title">Stress level</div>
+      <div class="title">Stress level</div>
       <canvas
         id="stress"
         aria-label="Stress level line chart"
@@ -9,7 +9,7 @@
       ></canvas>
     </div>
     <div id="stress-result">
-      <div id="table-title">Stress results</div>
+      <div class="title">Stress results</div>
       <table class="table">
         <testResultsValue
           v-for="(testResultValue, index) in testResults"
@@ -72,17 +72,6 @@ export default {
           ]
         },
         options: {
-          /*   label: {
-            display: false
-          },
-          tooltips: {
-            callbacks: {
-              label: function(tooltipItem) {
-                console.log(tooltipItem);
-                return tooltipItem.yLabel;
-              }
-            }
-          }, */
           scales: {
             yAxes: [
               {
@@ -111,6 +100,13 @@ export default {
 <style lang="scss" scoped>
 @import "~bootstrap/scss/bootstrap";
 #results {
+  .title {
+    text-align: left;
+    height: 5vh;
+    margin: 0 0 1rem 0;
+    font-size: x-large;
+    color: $teal;
+  }
   #chart {
     background-color: $gray-100;
     padding: 1.5rem;
@@ -119,13 +115,6 @@ export default {
     border: $border-color 1px solid;
     margin-bottom: 30px;
     margin: 0 10% 1% 10%;
-    #chart-title {
-      text-align: left;
-      height: 5vh;
-      margin: 0 0 1rem 0;
-      font-size: x-large;
-      color: $teal;
-    }
   }
   #stress-result {
     background-color: $gray-100;
@@ -136,13 +125,6 @@ export default {
     border-radius: $border-radius;
     box-shadow: $box-shadow-sm;
     border: $border-color 1px solid;
-    #table-title {
-      text-align: left;
-      height: 5vh;
-      margin: 0 0 1rem 0;
-      font-size: x-large;
-      color: $teal;
-    }
   }
 }
 </style>
