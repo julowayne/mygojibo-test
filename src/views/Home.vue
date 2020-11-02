@@ -19,7 +19,7 @@
         </div>
       </div>
       <globalResults
-        v-if="testResults.length && stressDates.length && stressValues.length"
+        v-if="testResults.length"
         :testResults="testResults"
         :stressDates="stressDates"
         :stressValues="stressValues"
